@@ -1,0 +1,14 @@
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #111;
+}
+
+img, video {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+}

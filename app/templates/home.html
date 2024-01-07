@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Random Meme</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% if meme_url %}
+    {% if meme_type == 'image' %}
+      <img src="{{ meme_url }}">
+    {% else %}
+      <video onloadeddata="this.play()" playsinline autoplay muted controls>
+        <source src="{{ meme_url }}" type="video/mp4">
+      </video>
+    {% endif %}
+  {% else %}
+    <h1>Nothing found!</h1>
+  {% endif %}
+</body>
+</html>
