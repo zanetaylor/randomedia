@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     url = os.getenv("MEDIA_ENDPOINT")
-    pw = os.getenv("MEDIA_ENDPOINT_pw")
+    pw = os.getenv("MEDIA_ENDPOINT_PW")
 
     mr = requests.get(url + '?ls&pw=' + pw, timeout=1)
 
