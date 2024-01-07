@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  {% if meme_url %}
-    {% if meme_type == 'image' %}
-      <img src="{{ meme_url }}">
+  {% if media_url %}
+    {% if media_type == 'image' %}
+      <img src="{{ media_url }}">
     {% else %}
       <video onloadeddata="this.play()" playsinline autoplay muted controls>
-        <source src="{{ meme_url }}" type="video/mp4">
+        <source src="{{ media_url }}" type="video/mp4">
       </video>
     {% endif %}
   {% else %}
