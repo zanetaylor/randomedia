@@ -1,5 +1,7 @@
 # randomedia
 
+Originally developed to work with the [copyparty](https://github.com/9001/copyparty) API.
+
 ## Config & usage
 
 Create a `.env` file from the template with values for your media API endpoint and a password, if applicable.
