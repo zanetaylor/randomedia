@@ -1,1 +1,2 @@
 FLASK_APP=randomedia
+FLASK_DEBUG=1
