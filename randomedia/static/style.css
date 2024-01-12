@@ -4,6 +4,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: #111;
+  font-family: 'Hanken Grotesk', Helvetica, Arial, sans-serif;
 }
 
 img, video {
@@ -11,4 +12,23 @@ img, video {
   width: 100vw;
   height: 100vh;
   object-fit: contain;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ddd;
+
+  a {
+    display: block;
+    padding: 5rem 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 3rem;
+    border-bottom: 1px solid #ccc;
+  }
 }

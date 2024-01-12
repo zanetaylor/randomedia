@@ -27,6 +27,9 @@ def create_app(test_config=None):
         api_url = os.getenv("MEDIA_ENDPOINT_URL")
         api_category = os.getenv("MEDIA_DEFAULT_CATEGORY")
 
+        category_request = api_request = requests.get(api_url + '?ls', timeout=1)
+        categories = category_request.json()
+
         api_request = requests.get(api_url + api_category + '?ls', timeout=1)
         media = api_request.json()
         
@@ -42,7 +45,7 @@ def create_app(test_config=None):
 
         rand_media_url = api_url + api_category + '/' + media['files'][num_rand]['href']
 
-        return render_template('home.html', media_type=rand_media_type,media_url=rand_media_url)
+        return render_template('home.html', categories=categories['dirs'],media_type=rand_media_type,media_url=rand_media_url)
     
     @app.route('/<category>')
     def from_category(category):
