@@ -1,5 +1,7 @@
 # randomedia
 
+WIP.
+
 Originally developed to work with the [copyparty](https://github.com/9001/copyparty) API.
 
 Now with subfolder ("category") support.
