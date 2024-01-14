@@ -47,7 +47,7 @@ def create_app(test_config=None):
 
         return render_template('home.html', categories=categories['dirs'],media_type=rand_media_type,media_url=rand_media_url)
     
-    @app.route('/<category>')
+    @app.route('/<category>/')
     def from_category(category):
 
         api_url = os.getenv("MEDIA_ENDPOINT_URL")
