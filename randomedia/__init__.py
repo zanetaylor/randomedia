@@ -60,7 +60,7 @@ def create_app(test_config=None):
 
         rand_media_ext = media['files'][num_rand]['ext']
 
-        if rand_media_ext in ['jpg','png','webp','gif']:
+        if rand_media_ext in ['jpg', 'jpeg','png','webp','gif']:
             rand_media_type = 'image'
         else:
             rand_media_type = 'video'
