@@ -12,10 +12,21 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  
   <nav>
-    {% for cat in categories %}
-    <a href="{{ cat.href }}">{{ cat.href }}</a>
-    {% endfor %}
+    <ul id="primary">
+      <li><a href="/">🎲</a></li>
+      {% if categories %}
+      <li><a href="javascript:void(0);" onclick="burgerToggle()">🍔</a></li>
+      {% endif %}
+    </ul>
+    {% if categories %}
+    <ul id="cats">
+      {% for cat in categories %}
+      <li><a href="{{ cat.href }}">{{ cat.href|replace('/', '') }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </nav>
   {% if media_url %}
     {% if media_type == 'image' %}
@@ -28,5 +39,17 @@
   {% else %}
     <h1>Nothing found!</h1>
   {% endif %}
+
+  <script>
+    function burgerToggle() {
+      let x = document.getElementById("cats");
+      
+      if (x.style.display === "block") {
+          x.style.display = "none";
+      } else {
+          x.style.display = "block";
+      }
+  }
+  </script>
 </body>
 </html>
