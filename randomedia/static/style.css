@@ -5,6 +5,15 @@
   --color-dark: #332941;
 }
 
+@keyframes spin {
+  from {
+      transform: rotate(0deg) scale(1.25);
+  }
+  to {
+      transform:rotate(360deg) scale(1.25);
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -39,9 +48,18 @@ nav {
     top: 0;
     right: 0;
     z-index: 99;
+    padding: .5rem 1rem;
 
     a {
-      padding: .3rem;
+      display: block;
+      margin: 0 0 .25rem 0;
+
+      &:hover {
+        animation-name: spin;
+        animation-duration: 250ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
     }
   }
 
