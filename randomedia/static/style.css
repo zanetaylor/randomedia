@@ -77,9 +77,15 @@ nav {
     bottom: 0;
     background: var(--color-dark);
 
+    li {
+      height: 25vh;
+    }
+
     a {
       display: block;
-      padding: 5rem 2rem;
+      height: 100%;
+      line-height: 25vh;
+      padding: 0 2rem;
       text-align: center;
       text-transform: uppercase;
       font-size: 4rem;

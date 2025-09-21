@@ -1,9 +1,11 @@
-import os, requests
+import os
+import requests
 from dotenv import load_dotenv
 from flask import Flask, render_template
 from random import randint
 
 load_dotenv('.env')
+
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -27,26 +29,34 @@ def create_app(test_config=None):
         api_url = os.getenv("MEDIA_ENDPOINT_URL")
         api_category = os.getenv("MEDIA_DEFAULT_CATEGORY")
 
-        category_request = api_request = requests.get(api_url + '?ls', timeout=1)
+        category_request = api_request = requests.get(
+            api_url + '?ls', timeout=1)
         categories = category_request.json()
 
         api_request = requests.get(api_url + api_category + '?ls', timeout=1)
         media = api_request.json()
-        
+
         num_media = len(media['files'])
-        num_rand = randint(0,num_media-1)
+        num_rand = randint(0, num_media-1)
 
         rand_media_ext = media['files'][num_rand]['ext']
 
-        if rand_media_ext in ['jpg','png','webp','gif']:
+        if rand_media_ext in ['jpg', 'png', 'webp', 'gif']:
             rand_media_type = 'image'
         else:
             rand_media_type = 'video'
 
-        rand_media_url = api_url + api_category + '/' + media['files'][num_rand]['href']
+        rand_media_url = api_url + api_category + \
+            '/' + media['files'][num_rand]['href']
 
-        return render_template('home.html', categories=categories['dirs'],media_type=rand_media_type,media_url=rand_media_url)
-    
+        return render_template(
+            'home.html',
+            categories=categories['dirs'],
+            default_category=api_category,
+            media_type=rand_media_type,
+            media_url=rand_media_url
+        )
+
     @app.route('/<category>/')
     def from_category(category):
 
@@ -56,17 +66,22 @@ def create_app(test_config=None):
         media = api_request.json()
 
         num_media = len(media['files'])
-        num_rand = randint(0,num_media-1)
+        num_rand = randint(0, num_media-1)
 
         rand_media_ext = media['files'][num_rand]['ext']
 
-        if rand_media_ext in ['jpg', 'jpeg','png','webp','gif']:
+        if rand_media_ext in ['jpg', 'jpeg', 'png', 'webp', 'gif']:
             rand_media_type = 'image'
         else:
             rand_media_type = 'video'
 
-        rand_media_url = api_url + category + '/' + media['files'][num_rand]['href']
+        rand_media_url = api_url + category + \
+            '/' + media['files'][num_rand]['href']
 
-        return render_template('home.html', media_type=rand_media_type,media_url=rand_media_url)
+        return render_template(
+            'home.html',
+            media_type=rand_media_type,
+            media_url=rand_media_url
+        )
 
     return app
