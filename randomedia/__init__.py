@@ -65,6 +65,10 @@ def create_app(test_config=None):
         api_request = requests.get(api_url + category + '?ls', timeout=1)
         media = api_request.json()
 
+        category_request = api_request = requests.get(
+            api_url + '?ls', timeout=1)
+        categories = category_request.json()
+
         num_media = len(media['files'])
         num_rand = randint(0, num_media-1)
 
@@ -80,6 +84,7 @@ def create_app(test_config=None):
 
         return render_template(
             'home.html',
+            categories=categories['dirs'],
             media_type=rand_media_type,
             media_url=rand_media_url
         )

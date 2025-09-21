@@ -26,7 +26,15 @@
     {% if categories %}
     <ul id="cats">
       {% for cat in categories %}
-      <li><a href="{{ cat.href }}">{{ cat.href|replace('/', '') }}</a></li>
+      <li><a href="/{{ cat.href }}">
+        {% if cat.href in request.path or (request.path == '/' and default_category in cat.href) %}
+          &rarr;
+        {% endif %}
+        {{ cat.href|replace('/', '') }}
+        {% if cat.href in request.path or (request.path == '/' and default_category in cat.href) %}
+          &larr;
+        {% endif %}
+      </a></li>
       {% endfor %}
     </ul>
     {% endif %}
