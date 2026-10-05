@@ -3,7 +3,7 @@
 ###########
 
 # pull official base image
-FROM python:3.12.1-slim-bookworm as builder
+FROM python:3.12.1-slim-bookworm AS builder
 
 # set work directory
 WORKDIR /usr/src/app
@@ -61,9 +61,5 @@ RUN chown -R app:app $APP_HOME
 # change to the app user
 USER app
 
-# FROM python:3.12.1-slim-bookworm
-# COPY ./requirements.txt /app/requirements.txt
-# WORKDIR /app
-# RUN pip install -r requirements.txt
-# COPY . /app
-# CMD [ "flask", "run", "--host", "0.0.0.0", "--port", "5000"]
+# Run the Flask app with the production WSGI server installed from requirements.txt.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "manage:app"]
